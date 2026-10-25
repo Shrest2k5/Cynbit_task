@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cynbit Project Blueprint (prototype)
 
-## Getting Started
+A four-step project scoping wizard proposed as an improvement to the discovery flow on https://www.cynbit.in.
+Independent prototype, not affiliated with Cynbit.
 
-First, run the development server:
+## Why
+The live site funnels every "Start discovery" button to one free-text form (name, email, company, industry, message)
+that collects no budget, timeline or scope, despite being headed "The Blueprint". This prototype shows the visitor an
+instant, indicative blueprint first and asks for contact details afterwards.
 
+## What it does
+1. Pick project type
+2. Pick industry and features
+3. Pick timeline and budget band
+4. See duration, cost range, phases, stack and the closest Cynbit case studies, then optionally send it or download it as Markdown
+
+## Stack
+Next.js (App Router), TypeScript, Tailwind CSS, Vitest. No database, no third-party runtime services.
+
+## Run
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm test
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
+`INQUIRY_WEBHOOK_URL` (optional): where `/api/inquiry` POSTs the validated lead JSON (Slack, Zapier, Make, etc.).
+Unset, the lead is logged to the server console.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Honest limits
+- The estimate is a transparent effort model with assumed rates (`src/lib/blueprint.ts`), not Cynbit pricing.
+- Case study titles and URLs come from the live site; the type/industry/feature tags are this prototype's own classification.
+- Leads are not stored; delivery depends on the webhook.
